@@ -1,0 +1,52 @@
+
+DROP DATABASE  IF EXISTS zchequa;
+CREATE DATABASE zchequa;
+
+USE zchequa;
+
+CREATE TABLE product  										 -- 商品表
+(
+product_id CHAR(4) PRIMARY KEY NOT NULL,	 # 商品ID
+product_name VARCHAR(128)  NOT NULL,			 /* 商品名称 */
+product_type VARCHAR(128) NOT NULL,			  
+sale_price INTEGER,												 -- 卖价
+purchase_price INTEGER,
+regist_date DATE													 -- 注册日期
+);
+
+CREATE TABLE shop											     -- 商店表
+(
+shop_id CHAR(4)  NOT NULL,                 -- 商店ID
+shop_name VARCHAR(128) NOT NULL,           -- 商店名称
+product_id CHAR(4)  NOT NULL,              -- 商品ID
+quantity INTEGER NOT NULL,							   -- 商品数量
+PRIMARY KEY(shop_id,product_id)
+);
+
+
+
+INSERT INTO product(product_id, product_name, product_type, sale_price, purchase_price, regist_date) VALUES 
+('0001','pan','Kitchen',1200,950,'2021-11-14'),
+('0002','bowl','Kitchen',200,100,'2021-10-09'),
+('0003','printer','office',5300,3900,'2021-04-09'),
+('0004','desk','office',4200,2900,'2021-08-18'),
+('0005','shoes','clothes',2000,1200,'2020-11-20'),
+('0006','pot','Kitchen',3800,2520,NULL),
+('0007','laptop','office',12000,7800,'2021-07-27'),
+('0008','jacket','clothes',800,NULL,'2021-01-24'),
+('0009','T-shirt','clothes',1300,450,'2021-10-09');
+
+
+
+INSERT INTO shop(shop_id, shop_name, product_id, quantity)
+values
+('000A','beijing','0001',20),
+('000A','beijing','0003',70),
+('000A','beiing','0005',90),
+('000B','nanjing','0001',50),
+('000B','nanjing','0006',110),
+('000C','tianjing','0004',60),
+('000C','tianjing','0002',70),
+('000C','tianjing','0008',120),
+('000C','tianjing','0009',200),
+('000D','lishui','0005',80);
